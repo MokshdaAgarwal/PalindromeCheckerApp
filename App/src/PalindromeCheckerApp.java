@@ -1,28 +1,28 @@
 public class PalindromeCheckerApp {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        String input = "madam";
+        String reversed = "";
 
-        boolean isPalindrome = true;
-
-
-        for (int i = 0; i < input.length() / 2; i++)
+        for (int i = input.length() - 1; i >= 0; i--)
         {
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i))
-            {
-                isPalindrome = false;
-                break;
-            }
+            reversed = reversed + input.charAt(i);
         }
 
-        if (isPalindrome)
+        if (input.equals(reversed))
         {
-            System.out.println(input + " is a Palindrome.");
-        } else
-        {
-            System.out.println(input + " is NOT a Palindrome.");
+            System.out.println("Result: The string is a PALINDROME.");
         }
+        else
+        {
+            System.out.println("Result: The string is NOT a palindrome.");
+        }
+
+        scanner.close();
     }
 }
 
@@ -55,5 +55,49 @@ Application Flow Control – Defines the startup behavior before palindrome proc
 
 git push origin UC1
 
+public class PalindromeCheckerApp {
+    public static void main(String[] args)
+    {
+        String input = "madam";
 
+        String reversed = "";
+
+        for (int i = input.length() - 1; i >= 0; i--)
+        {
+            reversed = reversed + input.charAt(i);
+        }
+
+        if (input.equals(reversed))
+        {
+            System.out.println(input + " is a Palindrome.");
+        }
+        else
+        {
+            System.out.println(input + " is NOT a Palindrome.");
+        }
+    }
+}
+ */
+/**
+ * ============================================================
+ * MAIN CLASS - UseCase4PalindromeCheckerApp
+ * ============================================================
+ *
+ * Use Case 4: Character Array Based Validation
+ *
+ * Description:
+ * This class validates a palindrome by converting
+ * the string into a character array and comparing
+ * characters using the two-pointer technique.
+ *
+ * At this stage, the application:
+ * - Converts string to char array
+ * - Uses start and end pointers
+ * - Compares characters efficiently
+ * - Displays the result
+ *
+ * This reduces extra memory usage.
+ *
+ * @author Developer
+ * @version 4.0
  */
