@@ -1,37 +1,36 @@
 
-import java.util.Stack;
+import java.util.*;
 
-public class UseCase5PalindromeCheckerApp
+public class PalindromeCheckerApp
 {
-
 
     public static void main(String[] args)
     {
 
+        String input = "civic";
 
-        String input = "noon";
+        Queue<Character> queue = new LinkedList<>();
 
         Stack<Character> stack = new Stack<>();
 
-        for (char c : input.toCharArray())
-        {
+        for (char c : input.toCharArray()) {
+            queue.add(c);
             stack.push(c);
         }
 
         boolean isPalindrome = true;
 
-        for (char c : input.toCharArray())
-        {
+        while (!queue.isEmpty()) {
 
-            char popped = stack.pop();
+            char qChar = queue.remove();
+            char sChar = stack.pop();
 
-            if (c != popped) {
+            if (qChar != sChar) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Display result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
@@ -66,4 +65,5 @@ Console Output – System.out.println() is used to display messages on the conso
 Application Flow Control – Defines the startup behavior before palindrome processing begins."
 
 git push origin UC1
+
 */
