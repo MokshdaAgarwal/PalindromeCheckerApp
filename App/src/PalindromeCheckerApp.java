@@ -1,37 +1,42 @@
 
 import java.util.Scanner;
+public static void main(String[] args) {
 
-public class PalindromeCheckerApp {
+    Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    System.out.print("Input: ");
+    String input = sc.nextLine();
 
-        String input = "radar";
-        Scanner sc = new Scanner(System.in);
+    String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+    PalindromeService service = new PalindromeService();
+    boolean result = service.checkPalindrome(input);
 
-        char[] chars = input.toCharArray();
-        System.out.print("Input: ");
-        String input = sc.nextLine();
+    System.out.println("Is Palindrome: " + result);
+}
 
-        int start = 0;
-        int end = chars.length - 1;
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+class PalindromeService {
+
+    public boolean checkPalindrome(String input) {
 
         boolean isPalindrome = true;
+        int start = 0;
+        int end = input.length() - 1;
 
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                for (int i = 0; i < normalized.length() / 2; i++) {
-                    if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                        isPalindrome = false;
-                        break;
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+                while (start < end) {
+                    if (input.charAt(start) != input.charAt(end)) {
+                        return false;
                     }
                     start++;
                     end--;
                 }
 
-                System.out.println("Input : " + input);
-                System.out.println("Is Palindrome? : " + isPalindrome);
                 System.out.println("Is Palindrome: " + isPalindrome);
+                return true;
             }
         }
     }
