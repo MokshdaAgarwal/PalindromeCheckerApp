@@ -3,12 +3,12 @@ import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
-    @@ -8,26 +9,31 @@ public static void main(String[] args) {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
         System.out.print("Input: ");
         String input = sc.nextLine();
 
-        PalindromeService service = new PalindromeService();
-        boolean result = service.checkPalindrome(input);
         PalindromeStrategy strategy = new StackStrategy();
         boolean result = strategy.check(input);
 
@@ -16,42 +16,39 @@ public class PalindromeCheckerApp {
     }
 }
 
-class PalindromeService {
-    interface PalindromeStrategy {
-        boolean check(String input);
-    }
-
-    class StackStrategy implements PalindromeStrategy {
-
-        public boolean checkPalindrome(String input) {
-            public boolean check (String input){
-
-                int start = 0;
-                int end = input.length() - 1;
-                Stack<Character> stack = new Stack<>();
-
-                for (char c : input.toCharArray()) {
-                    stack.push(c);
-                }
-
-                while (start < end) {
-                    if (input.charAt(start) != input.charAt(end)) {
-                        for (char c : input.toCharArray()) {
-                            if (c != stack.pop()) {
-                                return false;
-                            }
-                            start++;
-                            end--;
-                        }
-
-                        return true;
-                    }
-                }
-            }
-        }
-    }
+interface PalindromeStrategy {
+    boolean check(String input);
 }
 
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+        long startTime = System.nanoTime();
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        boolean isPalindrome = true;
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        return true;
+        long endTime = System.nanoTime();
+        long executionTime = endTime - startTime;
+
+        System.out.println("Is Palindrome: " + isPalindrome);
+        System.out.println("Execution Time: " + executionTime + " ns");
+    }
+}
 
 /* git config user.name
 git config user.name "MokshdaAgarwal"
