@@ -1,24 +1,25 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-
-public class PalindromeCheckerApp
-{
+import java.util.LinkedList;
 
 
-    public static void main(String[] args)
-    {
-        String input = "refer";
+public class PalindromeCheckerApp {
 
-        Deque<Character> deque = new ArrayDeque<>();
+    public static void main(String[] args) {
+
+        String input = "level";
+
+
+        LinkedList<Character> list = new LinkedList<>();
+
 
         for (char c : input.toCharArray()) {
-            deque.add(c);
+            list.add(c);
         }
+
 
         boolean isPalindrome = true;
 
-        while (deque.size() > 1) {
-            if (deque.removeFirst() != deque.removeLast()) {
+        while (list.size() > 1) {
+            if (list.removeFirst() != list.removeLast()) {
                 isPalindrome = false;
                 break;
             }
@@ -40,23 +41,10 @@ git status
 git add 'the file'
 git status
 
-git commit -m "UC1: Application Entry & Welcome Message
-Goal: Display a welcome message and app details at startup.
-Actor: User
-Flow:
-Program starts.
-JVM invokes the main() method.
-Application name is displayed.
-Application version is displayed.
-Program continues to next use case or exits.
-Key Concepts used in UC1:
-Class – Acts as a container for the Palindrome Checker application logic.
-Main Method – Entry point of the Java application with the signature
- public static void main(String[] args).
-Static Keyword – Allows the JVM to invoke the main() method without creating an object.
-Console Output – System.out.println() is used to display messages on the console.
-Application Flow Control – Defines the startup behavior before palindrome processing begins."
+git commit -m "UC1: Application Entry & "
 
 git push origin UC1
 
+git check out main
+git pull origin main
 */
