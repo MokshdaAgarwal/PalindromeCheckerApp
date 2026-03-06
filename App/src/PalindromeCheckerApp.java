@@ -1,25 +1,39 @@
-import java.util.LinkedList;
 
-public class UseCase9PalindromeCheckerApp {
+import java.util.Scanner;
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        String input = "madam";
-        boolean isPalindrome = check(input, 0, input.length() - 1);
 
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
-    }
+        String input = "radar";
+        Scanner sc = new Scanner(System.in);
 
-    private static boolean check(String s, int start, int end) {
-        if (start >= end) {
-            return true;
+        char[] chars = input.toCharArray();
+        System.out.print("Input: ");
+        String input = sc.nextLine();
+
+        int start = 0;
+        int end = chars.length - 1;
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                for (int i = 0; i < normalized.length() / 2; i++) {
+                    if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                        isPalindrome = false;
+                        break;
+                    }
+                    start++;
+                    end--;
+                }
+
+                System.out.println("Input : " + input);
+                System.out.println("Is Palindrome? : " + isPalindrome);
+                System.out.println("Is Palindrome: " + isPalindrome);
+            }
         }
-
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        return check(s, start + 1, end - 1);
     }
 }
 
