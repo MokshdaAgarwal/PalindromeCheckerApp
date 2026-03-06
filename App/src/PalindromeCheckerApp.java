@@ -1,42 +1,52 @@
-
 import java.util.Scanner;
-public static void main(String[] args) {
+import java.util.Stack;
 
-    Scanner sc = new Scanner(System.in);
+public class PalindromeCheckerApp {
 
-    System.out.print("Input: ");
-    String input = sc.nextLine();
+    @@ -8,26 +9,31 @@ public static void main(String[] args) {
+        System.out.print("Input: ");
+        String input = sc.nextLine();
 
-    String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-    PalindromeService service = new PalindromeService();
-    boolean result = service.checkPalindrome(input);
+        PalindromeService service = new PalindromeService();
+        boolean result = service.checkPalindrome(input);
+        PalindromeStrategy strategy = new StackStrategy();
+        boolean result = strategy.check(input);
 
-    System.out.println("Is Palindrome: " + result);
+        System.out.println("Is Palindrome: " + result);
+    }
 }
 
-
 class PalindromeService {
+    interface PalindromeStrategy {
+        boolean check(String input);
+    }
 
-    public boolean checkPalindrome(String input) {
+    class StackStrategy implements PalindromeStrategy {
 
-        boolean isPalindrome = true;
-        int start = 0;
-        int end = input.length() - 1;
+        public boolean checkPalindrome(String input) {
+            public boolean check (String input){
 
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-                while (start < end) {
-                    if (input.charAt(start) != input.charAt(end)) {
-                        return false;
-                    }
-                    start++;
-                    end--;
+                int start = 0;
+                int end = input.length() - 1;
+                Stack<Character> stack = new Stack<>();
+
+                for (char c : input.toCharArray()) {
+                    stack.push(c);
                 }
 
-                System.out.println("Is Palindrome: " + isPalindrome);
-                return true;
+                while (start < end) {
+                    if (input.charAt(start) != input.charAt(end)) {
+                        for (char c : input.toCharArray()) {
+                            if (c != stack.pop()) {
+                                return false;
+                            }
+                            start++;
+                            end--;
+                        }
+
+                        return true;
+                    }
+                }
             }
         }
     }
