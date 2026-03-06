@@ -1,37 +1,47 @@
-public class PalindromeCheckerApp {
+
+import java.util.Stack;
+
+public class UseCase5PalindromeCheckerApp
+{
+
+
     public static void main(String[] args)
     {
 
-        String input = "radar";
 
-        char[] chars = input.toCharArray();
+        String input = "noon";
 
-        int start = 0;
+        Stack<Character> stack = new Stack<>();
 
-        int end = chars.length - 1;
+        for (char c : input.toCharArray())
+        {
+            stack.push(c);
+        }
 
         boolean isPalindrome = true;
 
-        while (start < end)
+        for (char c : input.toCharArray())
         {
 
-            if (chars[start] != chars[end])
-            {
+            char popped = stack.pop();
+
+            if (c != popped) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
+
+        // Display result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
 
+
 /* git config user.name
 git config user.name "MokshdaAgarwal"
 git config user.email
-git config user.email
+git config user.email ''
 git checkout -b UC1
 git status
     copy the red file
